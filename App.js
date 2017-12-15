@@ -1,9 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
+import Splash from './components/Splash'
+import Login from './components/Login'
+import Register from './components/Register'
 
 export default class App extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
     this.state = {
       isLoading: true
     }
@@ -22,7 +25,7 @@ export default class App extends React.Component {
       .catch(err => console.log('error ', err))
   }
   getShow () {
-    fetch('http://24.185.162.181/shows', {
+    fetch('https://agile-forest-84610.herokuapp.com/shows', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,14 +59,8 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        {/* <Text>Open App.js to start working on your app!</Text> */}
-        <Text>Changes you make will automatically reload.</Text>
-        <Text >Shake your phone to open the developer menu.</Text>
-        <Button onPress={this.fetchShow.bind(this) } title='Press Me'>Press Me</Button>
-        <Button onPress={this.getShow.bind(this) } title='Login'>Create</Button>
-        {/* <Button onPress={this.fetchShows.bind(this) } title='Press Me'>Get Shows</Button> */}
-      </View>
+      // <Splash />
+      <Register />
     )
   }
 }
@@ -71,7 +68,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center'
   }
