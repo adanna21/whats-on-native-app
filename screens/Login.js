@@ -52,7 +52,7 @@ export default class Login extends Component {
           // secureTextEntry={true}
           style={styles.input}
         />
-        <TouchableOpacity onPress={this.onRegister.bind(this)}>
+        <TouchableOpacity>
           <Text>Login</Text>
         </TouchableOpacity>
       </View>

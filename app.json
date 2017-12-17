@@ -1,5 +1,11 @@
 {
   "expo": {
     "sdkVersion": "23.0.0"
+  },
+  "splash": {
+    "backgroundColor": "#FEF9B0",
+    "resizeMode": "cover",
+    "imaged": "./assets/images/app-wireframes.jpg"
+
   }
 }
