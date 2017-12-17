@@ -4,7 +4,7 @@
 //   StackNavigator
 // } from 'react-navigation'
 // import Splash from './components/Splash'
-import Login from './screens/Login'
+// import Login from './components/Login'
 // import Register from './components/Register'
 // // yarn add react-navigation to get expo crna to work with react nav
 
@@ -91,10 +91,10 @@ import {
   View,
 } from 'react-native';
 
-import {
-  StackNavigator,
-} from 'react-navigation';
-import RootNavigator from './navigation/RootNavigator'
+// import {
+//   StackNavigator,
+// } from 'react-navigation';
+import RootNavigator from './components/navigation/RootNavigator'
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -111,12 +111,9 @@ class HomeScreen extends React.Component {
   //   this.props.navigation.navigate('Home');
   // }
 }
-
-export default StackNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
-  Login: {
-    screen: RootNavigator
-  }
-});
+export default HomeScreen
+// export default StackNavigator({
+//   Home: {
+//     screen: HomeScreen,
+//   },
+// });
