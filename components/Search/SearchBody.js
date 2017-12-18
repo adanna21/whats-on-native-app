@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View} from 'react-native'
+import { Container, Content, Icon, ListItem } from 'native-base'
 
 export default class SearchBody extends Component {
   render () {
+    console.log(this.props.showData)
+    const show = this.props.showData
+    console.log(show)
+    // const showData = this.props.showData.map((d, i) => {d.name});
+    // console.log('this is from searchbody', show[0])
+    // show.map(elem => console.log(elem.name))
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>What's On!?</Text>
-      </View>
+        <Content>
+        <ListItem>
+          <Text>{elem.name}</Text>
+        </ListItem>
+        <ListItem></ListItem>
+       </Content>
     )
   }
 }

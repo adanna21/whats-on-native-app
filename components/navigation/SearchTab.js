@@ -28,7 +28,7 @@ export default class SearchTab extends Component {
     axios.get(query)
       .then((response) => {
         let data = response.data.results ? response.data.results : false
-        console.log(data)
+        // console.log(data)
 
         if(data) {
           this.setState({
@@ -44,10 +44,13 @@ export default class SearchTab extends Component {
   }
 
   renderContent = () => {
-    if(this.state.showData) {
-      return <SearchBody />
+    if(this.state.showFound) {
+      return this.state.showData.map(show => {
+        // console.log("seartab", show)
+        <SearchBody key={show.id} showData={show} />
+      })
     }else {
-      alert('show not found')
+      console.log('show not found')
     }
   }
   render () {
