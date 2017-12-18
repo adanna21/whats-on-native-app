@@ -13,8 +13,10 @@ export default class SearchTab extends Component {
   }
   state = {
     searchShow: '',
-    showData: {},
-    showFound: false
+    data: [],
+    loading: false,
+    error: null,
+    refreshing: false
   }
 
   // below function qeryies the movie db using axios
@@ -24,7 +26,7 @@ export default class SearchTab extends Component {
     const showName = this.state.searchShow.replace(/\s+/g, '%20').toLowerCase()
 
     const query = `https://api.themoviedb.org/3/search/tv?api_key=90234414e613d661340f75a5b7f57e08&language=en-US&query=${showName}&page=1`
-
+    this.setState({loading: true})
     axios.get(query)
       .then((response) => {
         let data = response.data.results ? response.data.results : false
@@ -32,27 +34,27 @@ export default class SearchTab extends Component {
 
         if(data) {
           this.setState({
-            showData: data,
-            showFound: true
+            data: data,
+            loading: false,
+            refreshing: false,
+            error: response.error || null
           })
         }
       }).catch((error => {
         this.setState({
-          showFound: false
+          error,
+          loading: false
         })
       }))
   }
 
-  renderContent = () => {
-    if(this.state.showFound) {
-      return this.state.showData.map(show => {
-        // console.log("seartab", show)
-        <SearchBody key={show.id} showData={show} />
-      })
-    }else {
-      console.log('show not found')
-    }
-  }
+  // renderContent = () => {
+  //   if(this.state.showFound) {
+  //       <SearchBody data={this.state.data} />
+  //   }else {
+  //     console.log('show not found')
+  //   }
+  // }
   render () {
     return (
       <Container>
@@ -62,7 +64,8 @@ export default class SearchTab extends Component {
           showSearch={this.showSearch}
         />
         <Content>
-          {this.renderContent()}
+          {/* {this.renderContent()} */}
+          <SearchBody data={this.state.data} />
         </Content>
       </Container>
     )
