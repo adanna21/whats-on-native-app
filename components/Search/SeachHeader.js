@@ -6,13 +6,18 @@ export default class SearchHeader extends Component {
   render () {
     return (
       <Header
-        style={height: 80}
+        style={{height: 80}}
         searchBar
         rounder
       >
         <Item>
-          <Icon name='ios-search'/>
-          <Input/>
+          <Icon name='ios-search' />
+          <Input
+            placeholder='Search for a tv show'
+            returnKeyType='search'
+            onChangeText={this.props.onChangeText}
+            onSubmitEditing={this.props.showSearch}
+          />
         </Item>
       </Header>
     )
