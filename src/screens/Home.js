@@ -13,13 +13,12 @@ export default class Home extends Component {
         loading: false,
         page: 1,
         error: null,
-        refreshing: false
+        refreshing: false,
+        detailsLoading: false
       }
+      // this.getShowDetails = this.getShowDetails.bind(this)
      }
 
-  static navigationOptions = {
-
-  }
 
   componentDidMount(){
     // on mount fetch api data
@@ -45,9 +44,35 @@ export default class Home extends Component {
       }))
   }
 
-  showDetails = (item) => {
+  // triggered when user clicks a tv show
+   showDetails = (item) => {
     // uses the navigation props passed from router
     this.props.navigation.navigate('ShowDetails', item)
+    this.getShowDetails(item.id)
+  }
+
+  // uses id of show to query for show details
+  getShowDetails = (id) => {
+    const query = `https://api.themoviedb.org/3/tv/${id}?api_key=90234414e613d661340f75a5b7f57e08&language=en-US`
+    this.setState({detailsLoading: true})
+    axios.get(query)
+      .then((response) => {
+        let detailsData = response.data.results ? response.data.results : false
+        
+        if(detailsData) {
+          console.log("details.......", detailsData)
+          this.setState({
+            detailsData: detailsData,
+            detailsLoading: false,
+            error: response.error || null
+          })
+        }
+      }).catch((error => {
+        this.setState({
+          error,
+          detailsLoading: false
+        })
+      }))
   }
 
   render () {
@@ -64,6 +89,7 @@ export default class Home extends Component {
                   avatar={{uri: `${url + item.poster_path}`}}
                   title={item.name}
                   onPress={() => this.showDetails(item)}
+                  details={this.state.detailsData}
                 />
               )}
               keyExtractor={item => item.id}

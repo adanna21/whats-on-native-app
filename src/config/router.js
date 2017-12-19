@@ -51,6 +51,13 @@ export const SettingsStack = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.routeName}`
     })
+  },
+  Home: {
+    // here ShowStack StackNavigator is called
+    screen: ShowStack,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.routeName}`
+    })
   }
 })
 

@@ -6,18 +6,24 @@ import axios from 'axios'
 import Auth from '../modules/Auth'
 
 export default class Login extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       username: '',
       password: '',
-      auth: Auth.getToken(),
+      auth: '',
       errors: ''
     }
   }
   
+  async componentDidMount () {
+    const auth = await Auth.getToken() 
+    this.setState({auth})
+  }
+
   async onLogin () {
+
     try {
       let response = await fetch('https://agile-forest-84610.herokuapp.com/login', {
         method: 'POST',
@@ -25,23 +31,22 @@ export default class Login extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          session: {
-            username: this.state.username,
-            password: this.state.password
-          }
+          username: this.state.username,
+          password: this.state.password
         })
       })
       let res = await response.text()
       if (response.status >= 200 && response.status < 300) {
         this.setState({error: ''})
-
         console.log('res is:' + res)
+        this.props.screenProps.setToken(res.token)
         this.props.navigation.navigate('Watchlist')
       } else {
         let errors = res
         throw errors
       }
     } catch (errors) {
+
       console.log('errors are:' + errors)
     }
   }

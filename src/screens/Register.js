@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
 import { FormLabel, FormInput, Button } from 'react-native-elements'
+import Auth from '../modules/Auth'
 
 export default class Register extends Component {
   constructor () {
@@ -26,14 +27,20 @@ export default class Register extends Component {
           user: {
             username: this.state.username,
             password: this.state.password,
-            email: this.state.email,
-            password_confirmation: this.state.password_confirmation
+            password_confirmation: this.state.password_confirmation,
+            email: this.state.email
           }
         })
       })
       let res = await response.text()
       if (response.status >= 200 && response.status < 300) {
         console.log('res is:' + res)
+        await Auth.authenticateToken(res.token)
+        const isAuth = await Auth.isUserAuthenticated()
+        console.log(isAuth)
+        this.setState({
+          auth: isAuth
+        })
       } else {
         let errors = res
         throw errors
