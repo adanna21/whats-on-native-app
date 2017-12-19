@@ -1,27 +1,26 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, FlatList} from 'react-native'
-import { Container, Content, Icon, ListItem, List } from 'native-base'
+import { StyleSheet, View, FlatList, Image} from 'react-native'
+import { Container, Content, Icon, ListItem, List, Text } from 'native-base'
 
 export default class SearchBody extends Component {
   render () {
     const show = this.props.data
+    const url = "https://image.tmdb.org/t/p/w500/"
     console.log(show)
     // const data = this.props.data.map((d, i) => {d.name});
     // console.log('this is from searchbody', show[0])
     // show.map(elem => console.log(elem.name))
     return (
-        <List>
+        <List style={{backgroundColor: 'white'}}>
           <FlatList
             data={this.props.data}
-            renderItem={(item) => {
-              console.log(item)
-              // <ListItem
-              //   // roundAvatar
-              //   title={`${item.name}`}
-              //   // avatar={{uri: item.backdrop_path}}
-              // />
-            }}
-            keyExtractor={() => {item.id}}
+            renderItem={({item}) => (
+              <ListItem style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                <Image source={{uri: `${url + item.poster_path}`}} style={{height: 150, width: 150}}/>
+                <Text>{item.name}</Text>
+              </ListItem>
+            )}
+            keyExtractor={item => item.id}
           />
         </List>
     )
@@ -40,3 +39,4 @@ const styles = StyleSheet.create({
     color: '#fff'
   }
 })
+

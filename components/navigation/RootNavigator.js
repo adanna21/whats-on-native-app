@@ -37,7 +37,7 @@ const RootNavigator = TabNavigator({
           <Button 
             vertical
             active={props.navigation.index === 2}
-            onPress={() => props.navigation.navigate('Settings')}
+            onPress={() => props.navigation.navigate('WatchList')}
             >
             <Icon name='eye' />
             <Text>Watch List</Text>
@@ -45,7 +45,7 @@ const RootNavigator = TabNavigator({
           <Button 
             vertical
             active={props.navigation.index === 3}
-            onPress={() => props.navigation.navigate('WatchList')}
+            onPress={() => props.navigation.navigate('Settings')}
             >
             <Icon name='settings' />
             <Text>Settings</Text>
