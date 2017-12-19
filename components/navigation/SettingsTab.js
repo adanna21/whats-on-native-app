@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, View} from 'react-native'
 import {StackNavigator, NavigationActions} from 'react-navigation'
 import { Container, Content, Icon, ListItem, List, Text, Button, Left, Body, Right, Header } from 'native-base'
-import Login from '../../screens/Login'
-import Register from '../../screens/Register'
+import Login from '../../src/screens/Login'
+import Register from '../../src/screens/Register'
 import HomeTab from './HomeTab'
 
 export default class SettingsTab extends Component {

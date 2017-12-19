@@ -95,9 +95,9 @@ import {
   StackNavigator,
 } from 'react-navigation';
 import RootNavigator from './components/navigation/RootNavigator'
-import Login from './screens/Login'
-import Register from './screens/Register'
-import SettingsTab from './components/navigation/SettingsTab'
+// import Login from './screens/Login'
+// import Register from './screens/Register'
+// import SettingsTab from './components/navigation/SettingsTab'
 import { Tabs } from './src/config/router'
 
 // export default class App extends React.Component {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
+import { FormLabel, FormInput, Button } from 'react-native-elements'
 
 export default class Register extends Component {
   constructor () {
@@ -45,31 +46,28 @@ export default class Register extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <TextInput
+        <FormInput
           placeholder='username'
           onChangeText={(val) => this.setState({username: val})}
-          style={styles.input}
         />
-        <TextInput
+        <FormInput
           placeholder='email'
           onChangeText={(val) => this.setState({email: val})}
-          style={styles.input}
         />
-        <TextInput
+        <FormInput
           placeholder='password'
           onChangeText={(val) => this.setState({password: val})}
           // secureTextEntry={true}
-          style={styles.input}
         />
-        <TextInput
+        <FormInput
           placeholder='confirm password'
           onChangeText={(val) => this.setState({password_confirmation: val})}
           // secureTextEntry={true}
-          style={styles.input}
         />
-        <TouchableOpacity onPress={this.onRegister.bind(this)}>
-          <Text>Register</Text>
-        </TouchableOpacity>
+        <Button
+          raised
+          title='Register'
+          onPress={this.onRegister.bind(this)} />
       </View>
     )
   }

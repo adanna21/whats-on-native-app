@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
-import {StackNavigator, NavigationActions} from 'react-navigation'
+// import {StackNavigator, NavigationActions} from 'react-navigation'
+import { Button } from 'react-native-elements'
+import axios from 'axios'
+import Auth from '../modules/Auth'
 
 export default class Login extends Component {
   constructor () {
@@ -9,10 +12,11 @@ export default class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      auth: Auth.getToken(),
       errors: ''
     }
   }
-
+  
   async onLogin () {
     try {
       let response = await fetch('https://agile-forest-84610.herokuapp.com/login', {
@@ -29,7 +33,10 @@ export default class Login extends Component {
       })
       let res = await response.text()
       if (response.status >= 200 && response.status < 300) {
+        this.setState({error: ''})
+
         console.log('res is:' + res)
+        this.props.navigation.navigate('Watchlist')
       } else {
         let errors = res
         throw errors
@@ -39,12 +46,8 @@ export default class Login extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Login',
-  }
-  
   render () {
-    console.log("settings tab", this.props.navigation)
+    // console.log("settings tab", this.props.navigation)
     return (
       <View style={styles.container}>
         <TextInput
@@ -58,9 +61,10 @@ export default class Login extends Component {
           // secureTextEntry={true}
           style={styles.input}
         />
-        <TouchableOpacity>
-          <Text>Login</Text>
-        </TouchableOpacity>
+        <Button
+          raised
+          title='Login'
+          onPress={this.onLogin.bind(this)} />
       </View>
     )
   }
