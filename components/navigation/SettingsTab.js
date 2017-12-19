@@ -1,35 +1,32 @@
 import React, { Component } from 'react'
 import { StyleSheet, View} from 'react-native'
-import {StackNavigator} from 'react-navigation'
+import {StackNavigator, NavigationActions} from 'react-navigation'
 import { Container, Content, Icon, ListItem, List, Text, Button, Left, Body, Right, Header } from 'native-base'
 import Login from '../../screens/Login'
 import Register from '../../screens/Register'
 import HomeTab from './HomeTab'
 
 export default class SettingsTab extends Component {
-
- static navigationOptions = {
-    title: 'Settings'
+  static navigationOptions = {
+    title: 'Settings',
   }
   render () {
+    console.log("settings tab", this.props.navigation)
+    // const {navigate} = this.props.navigation
+    // const navigateAction = NavigationActions.navigate({
+    //   routeName: 'Settings',
+    //   params: {},
+    // })
+    
+    
     return (
       <Container>
         <Header />
         <Content>
           <List>
-            {/* <Button
-              transparent 
-              light
-              onPress={() => props.navigation.navigate('Login')}
-              >
-              <Text>Login</Text>
-            </Button>
-            <Button transparent>
-              <Text>Register</Text>
-            </Button> */}
-            <ListItem onPress={() => props.navigation.navigate('Login')}>
+            <ListItem onPress={() => this.props.navigation.navigate('Login')}>
               <Left>
-                <Icon name="login" />
+                <Icon name="log-in" />
               </Left>
               <Body>
                 <Text>Login</Text>
@@ -38,9 +35,9 @@ export default class SettingsTab extends Component {
                 <Icon name="arrow-forward" />
               </Right>
             </ListItem>
-            <ListItem onPress={() => props.navigation.navigate('Register')}>
+            <ListItem onPress={() => this.props.navigation.navigate('Register')}>
               <Left>
-                <Icon name="registered" />
+                <Icon name="book" />
               </Left>
               <Body>
                 <Text>Register</Text>
@@ -57,8 +54,22 @@ export default class SettingsTab extends Component {
 }
 
 const SettingsNavigator = StackNavigator({
-  Settings: {screen: SettingsTab},
-  Login: {screen: Login},
-  Register: {screen: Register}
+  Settings: {
+      screen: SettingsTab,
+      navigationOptions:(props) => ({
+          title: "Settings"
+      })
+  },
+  Login: {
+      screen: Login,
+      navigationOptions: (props) => ({
+          title: "Login",
+      })
+  },
+  Register: {
+    screen: Register,
+    navigationOptions: (props) => ({
+      title: "Register",
+    })
+  }
 })
-

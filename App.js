@@ -85,35 +85,71 @@
 // })
 
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
 } from 'react-native';
 
-// import {
-//   StackNavigator,
-// } from 'react-navigation';
+import {
+  StackNavigator,
+} from 'react-navigation';
 import RootNavigator from './components/navigation/RootNavigator'
+import Login from './screens/Login'
+import Register from './screens/Register'
+import SettingsTab from './components/navigation/SettingsTab'
+import { Tabs } from './src/config/router'
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home'
-  };
+// export default class App extends React.Component {
+//   // static navigationOptions = {
+//   //   title: 'Home'
+//   // };
 
-  render() {
-    return (
-        <RootNavigator />
-    )
-  }
+//   render() {
+//     return (
+//         <AppNav />
+//     )
+//   }
 
-  // _handlePress = () => {
-  //   this.props.navigation.navigate('Home');
-  // }
-}
-export default HomeScreen
-// export default StackNavigator({
+//   // _handlePress = () => {
+//   //   this.props.navigation.navigate('Home');
+//   // }
+// }
+// // export default HomeScreen
+
+// const App = StackNavigator({
 //   Home: {
-//     screen: HomeScreen,
+//     screen: HomeTab,
 //   },
-// });
+//   Search: {
+//     screen: HomeTab,
+//   },
+//   WatchList: {
+//     screen: WatchListTab
+//   },
+//   Settings: {
+//     screen: SettingsTab,
+//     // navigationOptions:(props) => ({
+//     //   title: "Settings"
+//     // })
+//   },
+//   Login: {
+//       screen: Login,
+//       // navigationOptions: (props) => ({
+//       //     title: "Login",
+//       // })
+//   },
+//   Register: {
+//     screen: Register,
+//     // navigationOptions: (props) => ({
+//     //   title: "Register",
+//     // })
+//   }
+// })
+
+class App extends Component {
+  render () {
+    return <Tabs />
+  }
+}
+export default App

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
+import {StackNavigator, NavigationActions} from 'react-navigation'
 
 export default class Login extends Component {
   constructor () {
@@ -38,7 +39,12 @@ export default class Login extends Component {
     }
   }
 
+  static navigationOptions = {
+    title: 'Login',
+  }
+  
   render () {
+    console.log("settings tab", this.props.navigation)
     return (
       <View style={styles.container}>
         <TextInput

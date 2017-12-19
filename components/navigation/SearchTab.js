@@ -15,6 +15,7 @@ export default class SearchTab extends Component {
     searchShow: '',
     data: [],
     loading: false,
+    page: 1,
     error: null,
     refreshing: false
   }
@@ -25,7 +26,7 @@ export default class SearchTab extends Component {
     Keyboard.dismiss()
     const showName = this.state.searchShow.replace(/\s+/g, '%20').toLowerCase()
 
-    const query = `https://api.themoviedb.org/3/search/tv?api_key=90234414e613d661340f75a5b7f57e08&language=en-US&query=${showName}&page=1`
+    const query = `https://api.themoviedb.org/3/search/tv?api_key=90234414e613d661340f75a5b7f57e08&language=en-US&query=${showName}&page={page}`
     this.setState({loading: true})
     axios.get(query)
       .then((response) => {

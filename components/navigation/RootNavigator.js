@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {Text} from 'react-native'
 import {Footer, FooterTab, Button, Icon} from 'native-base'
 import {TabNavigator} from 'react-navigation'
