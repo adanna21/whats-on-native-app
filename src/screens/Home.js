@@ -13,8 +13,9 @@ export default class Home extends Component {
         loading: false,
         page: 1,
         error: null,
-        refreshing: false,
-        detailsLoading: false
+        refreshing: false
+        // detailsLoading: false,
+        // detailsData: null
       }
       // this.getShowDetails = this.getShowDetails.bind(this)
      }
@@ -22,12 +23,12 @@ export default class Home extends Component {
 
   componentDidMount(){
     // on mount fetch api data
-    const query = `https://api.themoviedb.org/3/tv/popular?api_key=90234414e613d661340f75a5b7f57e08&language=en-US&page={page}`
+    const query = `https://api.themoviedb.org/3/tv/popular?api_key=90234414e613d661340f75a5b7f57e08&language=en-US&page={page}&append_to_response=external_ids`
     this.setState({loading: true})
     axios.get(query)
       .then((response) => {
         let trendingData = response.data.results ? response.data.results : false
-        // console.log(trendingData
+        // console.log(trendingData)
         if(trendingData) {
           this.setState({
             trendingData: trendingData,
@@ -48,36 +49,15 @@ export default class Home extends Component {
    showDetails = (item) => {
     // uses the navigation props passed from router
     this.props.navigation.navigate('ShowDetails', item)
-    this.getShowDetails(item.id)
+    // this.getShowDetails(item.id)
+    // this.getAllData(item.name)
   }
 
-  // uses id of show to query for show details
-  getShowDetails = (id) => {
-    const query = `https://api.themoviedb.org/3/tv/${id}?api_key=90234414e613d661340f75a5b7f57e08&language=en-US`
-    this.setState({detailsLoading: true})
-    axios.get(query)
-      .then((response) => {
-        let detailsData = response.data.results ? response.data.results : false
-        
-        if(detailsData) {
-          console.log("details.......", detailsData)
-          this.setState({
-            detailsData: detailsData,
-            detailsLoading: false,
-            error: response.error || null
-          })
-        }
-      }).catch((error => {
-        this.setState({
-          error,
-          detailsLoading: false
-        })
-      }))
-  }
+  
 
   render () {
     const url = "https://image.tmdb.org/t/p/w500/"
-    console.log(this.state.trendingData)
+    // console.log(this.state.trendingData)
     return (
       <ScrollView>
         <List>

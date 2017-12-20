@@ -20,7 +20,7 @@ export const ShowStack = StackNavigator({
   ShowDetails: {
     screen: ShowDetails,
     navigationOptions: ({ navigation }) => ({
-      // in order t gain access to the navigation prop pass it to title
+      // in order to gain access to the navigation prop pass it to title
       title: `${navigation.state.params.name}`
     })
   }
@@ -42,19 +42,6 @@ export const SettingsStack = StackNavigator({
   },
   Register: {
     screen: Register,
-    navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.routeName}`
-    })
-  },
-  WatchList: {
-    screen: WatchList,
-    navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.routeName}`
-    })
-  },
-  Home: {
-    // here ShowStack StackNavigator is called
-    screen: ShowStack,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.routeName}`
     })

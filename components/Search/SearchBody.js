@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, FlatList, Image} from 'react-native'
-import { Container, Content, Icon, ListItem, List, Text } from 'native-base'
-
+import { FlatList } from 'react-native'
+import { Card, Button, Text, List } from 'react-native-elements'
 export default class SearchBody extends Component {
   render () {
     const show = this.props.data
@@ -15,10 +14,21 @@ export default class SearchBody extends Component {
           <FlatList
             data={this.props.data}
             renderItem={({item}) => (
-              <ListItem style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-                <Image source={{uri: `${url + item.poster_path}`}} style={{height: 150, width: 150}}/>
-                <Text>{item.name}</Text>
-              </ListItem>
+              <Card
+                title={item.name}
+                image={{uri: `${url + item.poster_path}`}}
+                imageStyle={{}}
+                >
+                <Text style={{marginBottom: 10}}>
+                {item.overview}
+                </Text>
+                <Button
+                  icon={{name: 'add'}}
+                  backgroundColor='#03A9F4'
+                  // fontFamily='Lato'
+                  buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                  title='Add to Watchlist' />
+              </Card>
             )}
             keyExtractor={item => item.id}
           />
@@ -26,17 +36,3 @@ export default class SearchBody extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3498db',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  title: {
-    fontSize: 40,
-    color: '#fff'
-  }
-})
-
