@@ -40,7 +40,7 @@ export default class App extends React.Component {
       stickyHeaderIndices: []
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     var arr = [];
     this.state.data.map(obj => {
       if (obj.header) {
@@ -51,7 +51,8 @@ export default class App extends React.Component {
     this.setState({
       stickyHeaderIndices: arr
     });
-    console.log("details", this.props.details)
+    console.log('details:')
+    console.log(this.props)
   }
   renderItem = ({ item }) => {
     if (item.header) {

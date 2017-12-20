@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, AsyncStorage } from 'react-native'
 // import {StackNavigator, NavigationActions} from 'react-navigation'
 import { Button } from 'react-native-elements'
-import axios from 'axios'
+// import axios from 'axios'
 import Auth from '../modules/Auth'
 
+const ACCESS_TOKEN = 'access_token'
 export default class Login extends Component {
   constructor (props) {
     super(props)
@@ -16,14 +17,32 @@ export default class Login extends Component {
       errors: ''
     }
   }
-  
-  async componentDidMount () {
-    const auth = await Auth.getToken() 
-    this.setState({auth})
+
+  // store token in storage, using async bc storage is outside of class so it has to make request 
+  async storeToken (accessToken) {
+    try {
+      await AsyncStorage.setItem(ACCESS_TOKEN, accessToken)
+      this.getToken()
+    } catch (error) {
+        console.log('did not store token')
+    }
   }
+  
+  // gettoken called in storeToken method
+  async getToken () {
+    try {
+      let token = await AsyncStorage.getItem(ACCESS_TOKEN)
+      console.log("token is:" + token)
+    } catch (errors) {
+      console.log('did not get token')
+    }
+  }
+  // async componentDidMount () {
+  //   const auth = await Auth.getToken() 
+  //   this.setState({auth})
+  // }
 
   async onLogin () {
-
     try {
       let response = await fetch('https://agile-forest-84610.herokuapp.com/login', {
         method: 'POST',
@@ -38,15 +57,19 @@ export default class Login extends Component {
       let res = await response.text()
       if (response.status >= 200 && response.status < 300) {
         this.setState({error: ''})
-        console.log('res is:' + res)
-        this.props.screenProps.setToken(res.token)
-        this.props.navigation.navigate('Watchlist')
+        let accessToken = res
+        this.storeToken(accessToken)
+        console.log('res token:' + accessToken)
+        // this.props.screenProps.setToken(res.token)
+        this.props.navigation.navigate('WatchList')
+        console.log(this.props.navigation)
+        this.setState({auth: accessToken})
       } else {
         let errors = res
         throw errors
       }
     } catch (errors) {
-
+      this.setState({errors: errors})
       console.log('errors are:' + errors)
     }
   }

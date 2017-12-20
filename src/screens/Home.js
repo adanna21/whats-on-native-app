@@ -21,7 +21,7 @@ export default class Home extends Component {
      }
 
 
-  componentDidMount(){
+  componentWillMount(){
     // on mount fetch api data
     const query = `https://api.themoviedb.org/3/tv/popular?api_key=90234414e613d661340f75a5b7f57e08&language=en-US&page={page}&append_to_response=external_ids`
     this.setState({loading: true})

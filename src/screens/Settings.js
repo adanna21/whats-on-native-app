@@ -11,9 +11,19 @@ export default class Settings extends Component {
   
   onLogout () {
     this.setState({
-      auth: Auth.deauthenticateUser()
+      auth: ''
     })
     this.props.navigation.navigate('Home')
+  }
+
+  async removeToken(info) {
+    try {
+      await AsyncStorage.removeItem(ACCESS_TOKEN);
+      // 
+      alert('you have logged out')
+    } catch(error) {
+      console.log('something went wrong ' + error)
+    }
   }
 
   render () {

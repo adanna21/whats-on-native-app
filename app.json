@@ -4,7 +4,7 @@
   },
   "splash": {
     "backgroundColor": "#FEF9B0",
-    "resizeMode": "cover",
+    // "resizeMode": "cover",
     "imaged": "./assets/images/app-wireframes.jpg"
 
   }

@@ -49,13 +49,6 @@ export default class Search extends Component {
       }))
   }
 
-  // renderContent = () => {
-  //   if(this.state.showFound) {
-  //       <SearchBody data={this.state.data} />
-  //   }else {
-  //     console.log('show not found')
-  //   }
-  // }
   render () {
     return (
       <Container>
@@ -65,7 +58,6 @@ export default class Search extends Component {
           showSearch={this.showSearch}
         />
         <Content>
-          {/* {this.renderContent()} */}
           <SearchBody data={this.state.data} />
         </Content>
       </Container>

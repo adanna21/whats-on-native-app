@@ -6,9 +6,6 @@ export default class SearchBody extends Component {
     const show = this.props.data
     const url = "https://image.tmdb.org/t/p/w500/"
     // console.log(show)
-    // const data = this.props.data.map((d, i) => {d.name});
-    // console.log('this is from searchbody', show[0])
-    // show.map(elem => console.log(elem.name))
     return (
         <List style={{backgroundColor: 'white'}}>
           <FlatList

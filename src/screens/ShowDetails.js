@@ -10,12 +10,12 @@ export default class Search extends Component {
     super()
     this.state = {
       detailsLoading: false,
-      detailsData: null,
+      data: [],
       error: null
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getAllData()
   }
   // uses id of show to query for show details
@@ -31,9 +31,9 @@ export default class Search extends Component {
         let detailsData = response.data._embedded.episodes ? response.data._embedded.episodes : false
         
         if(detailsData) {
-          // console.log("details.......", detailsData)
+          console.log("details.......", detailsData)
           this.setState({
-            detailsData: detailsData,
+            data: detailsData,
             detailsLoading: false,
             error: response.error || null
           })
@@ -49,6 +49,7 @@ export default class Search extends Component {
   render () {
     // below data is persited through the nav state params set up in router.js
     const { backdrop_path, name, overview, vote_average, id } = this.props.navigation.state.params
+    // console.log(thi)
     // console.log(this.props.navigation.state.params)
     // console.log(name)
     // screenProps={props}
@@ -59,7 +60,6 @@ export default class Search extends Component {
           imageSrc={{uri: `${url + backdrop_path}`}}
           featured
           title={name}
-          imageStyle={{"resizeMode": "cover"} }
           // caption={vote_average}
         >
         </Tile>
@@ -72,27 +72,10 @@ export default class Search extends Component {
           {overview}
           </Text>
         </List>
-        <EpisodeDetails details={this.state.detailsData} />
-        {/* <List>
-          <ListItem
-            title="Username"
-            rightTitle={login.username}
-            hideChevron
-          />
-        </List>
-
         <List>
-          <ListItem
-            title="Birthday"
-            rightTitle={dob}
-            hideChevron
-          />
-          <ListItem
-            title="City"
-            rightTitle={location.city}
-            hideChevron
-          />
-        </List> */}
+
+          {!this.state.detailsLoading && <EpisodeDetails data={this.state.data} />}
+        </List>
       </ScrollView>
     )
   }
