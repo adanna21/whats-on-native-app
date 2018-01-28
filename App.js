@@ -18,12 +18,14 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      auth: ''
+      auth: false,
+      currenToken: ''
     }
-    // this.setToken = this.setToken.bind(this)
+    this.removeToken = this.removeToken.bind(this)
+    this.setCurrentToken = this.setCurrentToken.bind(this)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.getToken()
   }
 
@@ -33,7 +35,10 @@ class App extends Component {
       if (!accessToken) {
         console.log('Did not get token')
       } else {
-        this.verifyToken()
+        this.setState({
+          auth: true
+        })
+        // this.verifyToken()
         this.navigate('Home')
       }
     } catch (error) {
@@ -41,8 +46,29 @@ class App extends Component {
     }
   }
 
+  async removeToken () {
+    try {
+      await AsyncStorage.removeItem(ACCESS_TOKEN)
+      this.setState({
+        auth: false,
+        token: ''
+      })
+      // this.props.navigation.navigate('Home')
+      alert('you have logged out')
+    } catch (error) {
+      console.log('something went wrong ' + error)
+    }
+  }
+
+  setCurrentToken (token) {
+    this.setState({
+      currentToken: token
+    })
+  }
+
   async verifyToken () {
-    let accessToken = token
+    // let accessToken = token
+    // this.setState(accessToken)
     // try {
     //   // let response = await fe
     // }
@@ -59,8 +85,10 @@ class App extends Component {
 
   render () {
     const props = {
-      auth: this.state.auth
-      // setToken: this.setToken
+      auth: this.state.auth,
+      token: this.setCurrentToken,
+      remove: this.removeToken,
+      currenToken: this.state.currenToken
     }
     return <Tabs screenProps={props} />
   }

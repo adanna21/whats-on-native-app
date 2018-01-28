@@ -56,9 +56,13 @@ export default class Search extends Component {
           value={this.state.searchShow}
           onChangeText={(searchShow) => this.setState({searchShow})}
           showSearch={this.showSearch}
+          mainProps={this.props.screenProps}
         />
         <Content>
-          <SearchBody data={this.state.data} />
+          <SearchBody
+            data={this.state.data}
+            mainProps={this.props.screenProps}
+            />
         </Content>
       </Container>
     )

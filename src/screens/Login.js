@@ -21,22 +21,30 @@ export default class Login extends Component {
   // store token in storage, using async bc storage is outside of class so it has to make request 
   async storeToken (accessToken) {
     try {
-      await AsyncStorage.setItem(ACCESS_TOKEN, accessToken)
-      this.getToken()
+      let currenToken = JSON.parse(accessToken).token
+      await AsyncStorage.setItem(ACCESS_TOKEN, currenToken)
+      
+      console.log("login access token", JSON.parse(accessToken).token)
+      this.props.screenProps.token(currenToken)
+      // this.getToken()
+      // console.log("token is:" + token)
     } catch (error) {
-        console.log('did not store token')
+      console.log('did not store token')
     }
   }
   
   // gettoken called in storeToken method
-  async getToken () {
-    try {
-      let token = await AsyncStorage.getItem(ACCESS_TOKEN)
-      console.log("token is:" + token)
-    } catch (errors) {
-      console.log('did not get token')
-    }
-  }
+  // async getToken () {
+  //   try {
+  //     let token = await AsyncStorage.getItem(ACCESS_TOKEN)
+  //     token = JSON.parse(token)
+  //     console.log("token is:" + token)
+  //     console.log(token.token)
+  //     return token.token
+  //   } catch (errors) {
+  //     console.log('did not get token')
+  //   }
+  // }
   // async componentDidMount () {
   //   const auth = await Auth.getToken() 
   //   this.setState({auth})

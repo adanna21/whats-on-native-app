@@ -9,22 +9,22 @@ export default class Settings extends Component {
     
   }
   
-  onLogout () {
-    this.setState({
-      auth: ''
-    })
-    this.props.navigation.navigate('Home')
-  }
+  // onLogout () {
+  //   this.setState({
+  //     auth: ''
+  //   })
+  //   this.props.navigation.navigate('Home')
+  // }
 
-  async removeToken(info) {
-    try {
-      await AsyncStorage.removeItem(ACCESS_TOKEN);
-      // 
-      alert('you have logged out')
-    } catch(error) {
-      console.log('something went wrong ' + error)
-    }
-  }
+  // async removeToken(info) {
+  //   try {
+  //     await AsyncStorage.removeItem(ACCESS_TOKEN);
+  //     // 
+  //     alert('you have logged out')
+  //   } catch(error) {
+  //     console.log('something went wrong ' + error)
+  //   }
+  // }
 
   render () {
     return (
@@ -41,7 +41,7 @@ export default class Settings extends Component {
           <ListItem
             title='Log Out'
             rightIcon={{ name: 'cancel' }}
-            onPress={this.onLogout.bind(this)}
+            onPress={this.props.screenProps.remove}
           />
         </List>
       </ScrollView>
