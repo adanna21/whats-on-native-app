@@ -74,25 +74,26 @@ Tory is a 25 year old woman who leads a very busy lifestyle and works in marketi
 
 # Additional
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
 * System dependencies
+  - auth0-js
+  - axios
+  - expo
+  - native-base
+  - react
+  - react-native
+  - react-native-elements
+  - react-native-vector-icons
+  - react-navigation
 
 * Configuration
 
 * Database creation
-
+ 
 * Database initialization
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+  - clone repo, install dependencies, then yarn run
+  - download expo mobile client on your mobile device or expo xde on your desktop then follow instructions
 
 * Deployment instructions
 
-* ...
