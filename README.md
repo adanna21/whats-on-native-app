@@ -7,11 +7,8 @@
 ---
 ## Screenshots
 
-**Home**
-![alt text](./assets/images/Home.gif "Home")
+| ![alt text](./assets/images/Home.gif "Home")  | ![alt text](./assets/images/Search.gif "Search") |
 
-**Search**
-![alt text](./assets/images/Search.gif "Search")
 
 **Login**
 ![alt text](./assets/images/Login.gif "Login")
