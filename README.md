@@ -5,7 +5,12 @@
 **When is that show coming back??** This mobile app is for those unfortunate souls who forget when their favorite shows will be back on air. With this app you will never miss a new episode or premiere again. 
 
 ---
+## Screenshots
 
+**Home**
+![alt text](./assets/images/Home.gif "Home")
+
+---
 ## User Story
 
 **Tory:**<br>
