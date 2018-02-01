@@ -1,6 +1,14 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "name": "What's On App",
+    "sdkVersion": "23.0.0",
+    "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.adanna-o.whats-on-app"
+    },
+    "android": {
+      "package": "com.adanna-o.whats-on-app"
+    }
   },
   "splash": {
     "backgroundColor": "#FEF9B0",
