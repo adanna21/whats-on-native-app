@@ -7,7 +7,8 @@
 ---
 ## Screenshots
 
-| ![Home](./assets/images/Home.gif "Home")  | ![Search](./assets/images/Search.gif "Search") | ![Login](./assets/images/Login.gif "Login") |
+|---|---|---|
+| ![Home](./assets/images/Home.gif)  | ![Search](./assets/images/Search.gif) | ![Login](./assets/images/Login.gif) |
 
 ---
 ## User Story
