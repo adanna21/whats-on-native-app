@@ -10,6 +10,12 @@
 **Home**
 ![alt text](./assets/images/Home.gif "Home")
 
+**Search**
+![alt text](./assets/images/Search.gif "Search")
+
+**Login**
+![alt text](./assets/images/Login.gif "Login")
+
 ---
 ## User Story
 
