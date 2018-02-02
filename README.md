@@ -6,7 +6,7 @@
 
 ---
 ## Screenshots
-| - | - | - |
+| Home | Search | Login |
 |---|---|---|
 | ![Home](./assets/images/Home.gif)  | ![Search](./assets/images/Search.gif) | ![Login](./assets/images/Login.gif) |
 
