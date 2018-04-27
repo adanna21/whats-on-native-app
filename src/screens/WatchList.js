@@ -43,56 +43,55 @@ export default class WatchList extends Component {
         'Authorization': `Token ${token}`
       }
     })
-    .then((response) => {
-      let data = response.data
-      console.log('this is show', data)
-      if (data.shows) {
-        this.setState({
-          data: data,
-          isLoading: false,
-          error: response.error || null
-        })
-      } else {
-        console.log('no shows')
-      }
-    }).catch((error => {
+      .then((response) => {
+        let data = response.data
+        console.log('this is show', data)
+        if (data.shows) {
+          this.setState({
+            data: data,
+            isLoading: false,
+            error: response.error || null
+          })
+        } else {
+          console.log('no shows')
+        }
+      }).catch(error => {
       this.setState({
         error,
         isLoading: false
       })
-    }))
+    })
   }
-  
-  render () {
 
+  render () {
     // const show = this.props.data
     // const url = "https://image.tmdb.org/t/p/w500/"
     // console.log(show)
     return (
-        <List style={{backgroundColor: 'white'}}>
-        <Text>hhhhhhhh</Text>
-          <FlatList
-            data={this.props.data}
-            renderItem={({item}) => (
-              <Card
-                title={item.name}
-                image={{uri: `${url + item.poster_path}`}}
-                // imageStyle={{}}
-                >
-                <Text style={{marginBottom: 5}}>
-                {item.overview}
-                </Text>
-                <Button
-                  icon={{name: 'add'}}
-                  backgroundColor='#03A9F4'
-                  // fontFamily='Lato'
-                  buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                  title='Add to Watchlist' />
-              </Card>
-            )}
-            keyExtractor={item => item.id}
-          />
-        </List>
+      <List style={{backgroundColor: 'white'}}>
+          <Text>hhhhhhhh</Text>
+        <FlatList
+          data={this.props.data}
+          renderItem={({item}) => (
+            <Card
+              title={item.name}
+              image={{uri: `${url + item.poster_path}`}}
+              // imageStyle={{}}
+            >
+              <Text style={{marginBottom: 5}}>
+                  {item.overview}
+              </Text>
+              <Button
+                icon={{name: 'add'}}
+                backgroundColor='#03A9F4'
+                // fontFamily='Lato'
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                title='Add to Watchlist' />
+            </Card>
+          )}
+          keyExtractor={item => item.id}
+        />
+      </List>
     )
   }
 }
